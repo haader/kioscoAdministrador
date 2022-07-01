@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}, function (err) {
 		if (err) {
-			console.log(err);
+			alert(err);
 			return
 		}
-		console.log("Iniciado correctamente");
+		alert("Iniciado correctamente");
 		Quagga.start();
 	});
 
 	Quagga.onDetected((data) => {
 		$resultados.textContent = data.codeResult.code;
 		// Imprimimos todo el data para que puedas depurar
-		console.log(data);
+		alert(data);
 	});
 });
