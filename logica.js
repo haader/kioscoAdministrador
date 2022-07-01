@@ -1,5 +1,29 @@
 //https://parzibyte.me/blog/2020/06/22/leer-codigo-barras-javascript-camara/
 document.addEventListener("DOMContentLoaded", () => {
+
+    let codigo="";
+    let mycod=["code_128_reader",
+        "code_39_reader",
+        "code_39_vin_reader",
+        "ean_reader",
+        "ean_extended_reader",
+        "ean_8_reader",
+        "upc_reader",
+        "upc_e_reader",
+        "codabar_reader",
+        "i2of5_reader",
+        "code_93_reader"]
+
+     
+    
+        mycod.forEach((element)=>{
+            document.getElementById("listItem").innerHTML+='<li onclick="ser('+element+')">'+element+'</li>';
+        });
+      
+        function ser(k){
+            codigo=k;
+            alert("el codigo seleccionado es:"+codigo);
+        };
 	const $resultados = document.querySelector("#resultado");
 	Quagga.init({
 		inputStream: {
@@ -23,10 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		Quagga.start();
 	});
 
+
+
+
+
+
 	Quagga.onDetected((data) => {
 		$resultados.textContent = data.codeResult.code;
 		// Imprimimos todo el data para que puedas depurar
 		console.log(data);
+        alert("codigo:"+ data.codeResult.code)
 	});
 
 	Quagga.onProcessed(function (result) {
