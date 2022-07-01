@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	Quagga.init({
 		inputStream: {
 			constraints: {
-				width: 1920,
-				height: 1080,
+				width: 4160,
+				height: 3120,
 			},
 			name: "Live",
 			type: "LiveStream",
@@ -53,3 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 });
+
+
+/*
+
+code_128_reader
+code_39_reader
+code_39_vin_reader
+ean_reader
+ean_extended_reader
+ean_8_reader
+upc_reader
+upc_e_reader
+codabar_reader
+i2of5_reader
+2of5_reader
+code_93_reader
+*/
