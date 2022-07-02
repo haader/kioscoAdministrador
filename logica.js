@@ -1,51 +1,68 @@
 //https://parzibyte.me/blog/2020/06/22/leer-codigo-barras-javascript-camara/
+
+
+
+let codigo="code_128_reader";
+const mycod=["code_128_reader",
+	"code_39_reader",
+	"code_39_vin_reader",
+	"ean_reader",
+	"ean_extended_reader",
+	"ean_8_reader",
+	"upc_reader",
+	"upc_e_reader",
+	"codabar_reader",
+	"i2of5_reader",
+	"code_93_reader"];
+
+	function ser(k){
+		codigo=mycod[k];
+		alert("el codigo seleccionado es: "+codigo);
+		console.warn(codigo);
+		document.getElementById("cod").innerHTML='<li id="cod">codigo2: '+codigo+'</li>';
+	
+		
+		Quagga.init({
+			inputStream: {
+				constraints: {
+					width: 1000,
+					height: 580,
+				},
+				name: "Live",
+				type: "LiveStream",
+				target: document.querySelector('#contenedor'), // Pasar el elemento del DOM
+			},
+			decoder: {
+				readers: [codigo]
+			}
+		}, function (err) {
+			if (err) {
+				console.log(err);
+				return
+			}
+			console.log("Iniciado correctamente");
+			Quagga.start();
+		});
+	};
+
+
+	mycod.forEach((element,index)=>{
+		document.getElementById("listItem").innerHTML+='<li onclick= "ser('+index+')">'+element+'</li>';
+	});
+ 
+	
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    let codigo="";
-    let mycod=["code_128_reader",
-        "code_39_reader",
-        "code_39_vin_reader",
-        "ean_reader",
-        "ean_extended_reader",
-        "ean_8_reader",
-        "upc_reader",
-        "upc_e_reader",
-        "codabar_reader",
-        "i2of5_reader",
-        "code_93_reader"]
 
-     
-    
-        mycod.forEach((element)=>{
-            document.getElementById("listItem").innerHTML+='<li onclick="ser('+element+')">'+element+'</li>';
-        });
-      
-        function ser(k){
-            codigo=k;
-            alert("el codigo seleccionado es:"+codigo);
-        };
+
+
+
 	const $resultados = document.querySelector("#resultado");
-	Quagga.init({
-		inputStream: {
-			constraints: {
-				width: 4160,
-				height: 3120,
-			},
-			name: "Live",
-			type: "LiveStream",
-			target: document.querySelector('#contenedor'), // Pasar el elemento del DOM
-		},
-		decoder: {
-			readers: ["ean_reader"]
-		}
-	}, function (err) {
-		if (err) {
-			console.log(err);
-			return
-		}
-		console.log("Iniciado correctamente");
-		Quagga.start();
-	});
+	
 
 
 
@@ -84,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
-
+  
 /*
 
 code_128_reader
