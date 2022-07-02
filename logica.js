@@ -17,7 +17,7 @@ const mycod=["code_128_reader",
 
 	function ser(k){
 		codigo=mycod[k];
-		alert("el codigo seleccionado es: "+codigo);
+		
 		console.warn(codigo);
 		document.getElementById("cod").innerHTML='<li id="cod">codigo2: '+codigo+'</li>';
 	
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		$resultados.textContent = data.codeResult.code;
 		// Imprimimos todo el data para que puedas depurar
 		console.log(data);
-        alert("codigo:"+ data.codeResult.code)
+        
 	});
 
 	Quagga.onProcessed(function (result) {
