@@ -170,3 +170,7 @@ i2of5_reader
 2of5_reader
 code_93_reader
 */
+
+
+//EAN_8
+//EAN_13
