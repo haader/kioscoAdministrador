@@ -1,26 +1,6 @@
 //https://parzibyte.me/blog/2020/06/22/leer-codigo-barras-javascript-camara/
 
-
-
-let codigo="code_128_reader";
-const mycod=["code_128_reader",
-	"code_39_reader",
-	"code_39_vin_reader",
-	"ean_reader",
-	"ean_extended_reader",
-	"ean_8_reader",
-	"upc_reader",
-	"upc_e_reader",
-	"codabar_reader",
-	"i2of5_reader",
-	"code_93_reader"];
-
-	function ser(k){
-		codigo=mycod[k];
-		
-		console.warn(codigo);
-		document.getElementById("cod").innerHTML='<li id="cod">codigo2: '+codigo+'</li>';
-	
+function iniciar(){
 		
 		Quagga.init({
 			inputStream: {
@@ -43,14 +23,11 @@ const mycod=["code_128_reader",
 			console.log("Iniciado correctamente");
 			Quagga.start();
 		});
-	};
 
 
-	mycod.forEach((element,index)=>{
-		document.getElementById("listItem").innerHTML+='<li onclick= "ser('+index+')">'+element+'</li>';
-	});
- 
+	}
 	
+
 
 
 
@@ -101,7 +78,83 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
+
+//************************************************************************************* */
+
+let codigo="code_128_reader";
+const mycod=["code_128_reader",
+	"code_39_reader",
+	"code_39_vin_reader",
+	"ean_reader",
+	"ean_extended_reader",
+	"ean_8_reader",
+	"upc_reader",
+	"upc_e_reader",
+	"codabar_reader",
+	"i2of5_reader",
+	"code_93_reader"];
+
+	function ser(k){
+		codigo=mycod[k];
+		posicion=k;
+		console.warn(codigo);
+		document.getElementById("cod").innerHTML='<li id="cod">codigo2: '+codigo+'</li>';
+	
+		iniciar();
+
+	};
+
+
+
+//listamos los distintos tipos de codigo de barras (MANEJANDO EL DOM)
+	mycod.forEach((element,index)=>{
+		document.getElementById("listItem").innerHTML+='<li class="listas" id="'+index+'" onclick= "ser('+index+')">'+element+'</li>';
+	});
+ 
+	
+let posicion=0;
+
+document.getElementById("btnBack").addEventListener('click',changeColor=>{
+	document.getElementById("btnBack").style.color="orange";
+	setTimeout(s=>{
+		document.getElementById("btnBack").style.color="white";
+	},100);
+	
+})
+
+
+document.getElementById("btnNext").addEventListener('click',changeColor2=>{
+	document.getElementById("btnNext").style.color="orange";
+	setTimeout(e=>{
+		document.getElementById("btnNext").style.color="white";
+	},100);
+	
+})
+
+function back(){
+	document.getElementById("btnBack").style.color="orange";
+	posicion--;
+	Array.from(document.getElementsByClassName("listas")).forEach(element=>{
+		element.style.color="black";
+	});
+	document.getElementById(posicion).style.color="orange";
+	ser(posicion);
+	document.getElementById("btnBack").style.color="white";
+}
   
+
+function next(){
+	document.getElementById("btnNext").style.color="orange";
+	posicion++;
+	Array.from(document.getElementsByClassName("listas")).forEach(element=>{
+		element.style.color="black";
+	});
+	
+	document.getElementById(posicion).style.color="orange";
+	ser(posicion);
+	document.getElementById("btnNext").style.color="white";
+}
+
 /*
 
 code_128_reader
